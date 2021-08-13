@@ -1,0 +1,38 @@
+# Heriberto Aja Gámez A00821947
+# Análisis y diseño de algoritmos (Grupo 500)
+# 12 de agosto de 2021
+# Tarea: Algoritmo Parentesis
+# ----
+# Recibes una string conteniendo solo () y []
+# Crea un algoritmos para validar que la sintaxis de los corchetes es correcta:
+# Ejemplos validos:
+# '()'
+# '()()()()()()()()()'
+# '([])[]()'
+# Ejemplos no validos:
+# ')'
+# '()['
+# '(([))]'
+# '(((((((((((((((((((((((((((((((((('
+# ----
+# Función para validar sintaxix de corchetes
+
+lista_abre = ["[","("]
+lista_cierra= ["]",")"]
+
+def validaCorchetes(strPrueba):
+    stack = []
+    for i in strPrueba:
+        if i in lista_abre:
+            stack.append(i)
+        elif i in lista_cierra:
+            posicion = lista_cierra.index(i)
+            if ((len(stack) > 0) and
+                (lista_abre[posicion] == stack[len(stack)-1])):
+                stack.pop()
+            else:
+                return "no es valido"
+    if len(stack) == 0:
+        return "valido"
+    else:
+        return "no es valido"
