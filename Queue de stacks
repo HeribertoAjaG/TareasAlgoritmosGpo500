@@ -1,0 +1,39 @@
+# Heriberto Aja Gámez A00821947
+# Análisis y diseño de algoritmos (Grupo 500)
+# 18 de agosto de 2021
+# Tarea: Queue de stacks
+# ----
+# Implemente una Clase queue en python, utilizando SOLAMENTE 2 stacks, 
+# suba su codigo su repositorio de github y entregue el link al archivo.
+# ----
+
+class Queue:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+ 
+    def agregarAQueue(self, x):
+         
+        # Mover todos los elementos del Stack1 al Stack2
+        while len(self.stack1) != 0:
+            self.stack2.append(self.stack1[-1])
+            self.stack1.pop()
+ 
+        # Agregar elemento al Stack1
+        self.stack1.append(x)
+ 
+        # Devolver todos los elementos del Stack2 al Stack1
+        while len(self.stack2) != 0:
+            self.stack1.append(self.stack2[-1])
+            self.stack2.pop()
+            
+    def removerDeQueue(self):
+         
+            # Si el primer Stack esta vacio
+        if len(self.stack1) == 0:
+            print("Queue esta vacio")
+     
+        # Sacar ultimo elemento del Stack1
+        x = self.stack1[-1]
+        self.stack1.pop()
+        return x
